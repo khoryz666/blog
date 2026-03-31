@@ -9,7 +9,6 @@ build_search_index = true
 
 [markdown]
 
-[markdown.highlighting]
 
 [extra]
 # Put all your custom variables here

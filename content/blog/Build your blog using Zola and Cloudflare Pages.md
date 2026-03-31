@@ -1,19 +1,17 @@
 +++
-title = "My second post"
-date = 2019-11-28
+title = "Build your blog using Zola and Cloudflare Pages"
+date = 2026-03-31
 +++
 
 # Implementation Plan
 
-I plan to implement my blog using Cloudflare pages, along with (zola)[https://github.com/getzola/zola] and definitely a minimalistic theme.
+I plan to implement my blog using Cloudflare pages, along with [zola](https://github.com/getzola/zola) and definitely a minimalistic theme.
 
 I am tired of AI shit (it disrupts my capability to read and improve)
 
 Hence there will be no AI-generated content in my blog.
 
-See you in 3 days later~
-
-*hongyeblogspace.uk is my previous site (built with (NotionNext)[https://docs.tangly1024.com/about]), which is deprecated*
+*hongyeblogspace.uk is my previous site (built with [NotionNext](https://docs.tangly1024.com/about)), which is deprecated*
 
 I appreciate the previous blog but it is too much of bloat. Now let me build this myself with a larger proportion of self-involvement, at least building the frontend and structure the deployment myself.
 
@@ -25,7 +23,7 @@ there are three entities basically (my computer (git repo), github repo, cloudfl
 
 from my computer, i save markdown posts, then deploy it to github
 
-using github action, my zola engine helps me to convert md posts to html/css/js
+my zola engine helps me to convert md posts to html/css/js
 
 then github trigger cloudflare to take the html/css/js, then cloudflare distribute my files worldwide (what happening here is not important, it is a blackbox for me)
 
@@ -41,7 +39,8 @@ throughout this session, i will learn
 Steps:
 I install zola in my computer first (depends on which system you are on, `scoop install zola` / `sudo pacman -S zola`)
 2026-03-31 : gone through https://www.getzola.org/documentation/getting-started/overview/ and deploy it on cloudflare (~2 hr)
-
+: refering (https://tsc.au/posts/2025/05/how-to-deploy-zola-to-cloudflare-pages/) and (https://github.com/cloudflare/pages-build-image/issues/3), i successfully build this page under version 2 in cloudflare
+: i will slowly add more features, add least i had start small hahaha
 3. how to configure github action to auto build md files once deployed
 
 4. how to get myself a cloudflare website, totally free

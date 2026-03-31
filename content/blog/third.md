@@ -1,3 +1,8 @@
++++
+title = "My second post"
+date = 2019-11-28
++++
+
 # Implementation Plan
 
 I plan to implement my blog using Cloudflare pages, along with (zola)[https://github.com/getzola/zola] and definitely a minimalistic theme.

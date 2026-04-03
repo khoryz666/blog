@@ -1,5 +1,5 @@
 +++
-title = "Synergy of AI and Project Based Learning (PBL)
+title = "Synergy of AI and Project Based Learning (PBL)"
 date = 2026-04-04
 +++
 

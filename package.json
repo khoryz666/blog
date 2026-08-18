@@ -1,0 +1,22 @@
+{
+  "name": "blog",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "astro check",
+    "lint": "oxlint",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.16.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "oxlint": "^1.75.0",
+    "typescript": "~6.0.2"
+  }
+}

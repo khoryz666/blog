@@ -1,0 +1,116 @@
+<mxfile host="app.diagrams.net" agent="opencode">
+  <diagram name="Website Architecture" id="website-architecture">
+    <mxGraphModel dx="1548" dy="934" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1560" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" value="&lt;div&gt;markdown to html pipeline&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="420" x="40" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="cnt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;fontSize=13;" value="&lt;b&gt;content/posts/&lt;/b&gt;&lt;br&gt;md + images" vertex="1">
+          <mxGeometry height="70" width="200" x="55" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;fontSize=13;" value="&lt;b&gt;src/config.ts&lt;/b&gt;&lt;br&gt;site settings" vertex="1">
+          <mxGeometry height="70" width="200" x="55" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="build" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontSize=13;" value="&lt;b&gt;Build (Astro)&lt;/b&gt;&lt;br&gt;md → HTML&lt;br&gt;runs once, locally or in CI" vertex="1">
+          <mxGeometry height="90" width="220" x="355" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="dist" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;fontSize=13;" value="&lt;b&gt;dist/&lt;/b&gt;&lt;br&gt;HTML · CSS · JS · images" vertex="1">
+          <mxGeometry height="90" width="220" x="675" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="host" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=13;" value="&lt;b&gt;Static host / CDN&lt;/b&gt;&lt;br&gt;stores and serves the files" vertex="1">
+          <mxGeometry height="90" width="220" x="995" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=center;verticalAlign=middle;fontSize=13;" value="&lt;b&gt;Browser&lt;/b&gt;&lt;br&gt;user sees the page" vertex="1">
+          <mxGeometry height="90" width="220" x="1315" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="cnt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="build" value="md + images">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="cfg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="build" value="settings">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="build" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="dist" value="static files">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="dist" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="host" value="upload (git push → CI)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="host" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="browser" value="HTTP: request → response">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=center;verticalAlign=middle;fontSize=12;" value="New post? Add a folder → push to git → CI rebuilds → hosting serves new files. Nothing else to do." vertex="1">
+          <mxGeometry height="44" width="1180" x="230" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;fontSize=12;" value="file / text (input · output)" vertex="1">
+          <mxGeometry height="30" width="220" x="480" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;fontSize=12;" value="processing step" vertex="1">
+          <mxGeometry height="30" width="150" x="720" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=center;fontSize=12;" value="core transform (md → HTML)" vertex="1">
+          <mxGeometry height="30" width="220" x="890" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;content/posts/&lt;slug&gt;/index.md&lt;/b&gt;&lt;br&gt;raw text: frontmatter (YAML)&lt;br&gt;+ markdown body + images" vertex="1">
+          <mxGeometry height="100" width="220" x="480" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-5" edge="1" parent="1" source="niy5BmT-pGjxLw0RWRAJ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="niy5BmT-pGjxLw0RWRAJ-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="965" y="858" />
+              <mxPoint x="965" y="858" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-6" connectable="0" parent="niy5BmT-pGjxLw0RWRAJ-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="data + md file" vertex="1">
+          <mxGeometry relative="1" x="-0.1733" y="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;1 · Parse frontmatter&lt;/b&gt;&lt;br&gt;YAML → {title, date, tags, draft}&lt;br&gt;body kept as md string" vertex="1">
+          <mxGeometry height="100" width="210" x="860" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;2 · Content Collection&lt;/b&gt;&lt;br&gt;Zod schema validates&lt;br&gt;→ entry {slug, title, tags, body}" vertex="1">
+          <mxGeometry height="100" width="210" x="860" y="868" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;3 · render(entry)&lt;/b&gt;&lt;br&gt;md text → mdast tree&lt;br&gt;→ HTML string (remark-gfm)" vertex="1">
+          <mxGeometry height="100" width="210" x="480" y="868" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;4 · Page&lt;/b&gt;&lt;br&gt;post/[slug].astro + getStaticPaths()&lt;br&gt;Layout wraps + head meta/OG" vertex="1">
+          <mxGeometry height="100" width="200" x="480" y="1058" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;5 · Output&lt;/b&gt;&lt;br&gt;dist/post/&lt;slug&gt;/index.html&lt;br&gt;static HTML + CSS/JS links" vertex="1">
+          <mxGeometry height="100" width="170" x="900" y="1058" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-12" edge="1" parent="1" source="niy5BmT-pGjxLw0RWRAJ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="niy5BmT-pGjxLw0RWRAJ-7" value="raw text">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-13" edge="1" parent="1" source="niy5BmT-pGjxLw0RWRAJ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="entry {slug, title, tags, body}">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="918" />
+              <mxPoint x="740" y="918" />
+            </Array>
+            <mxPoint x="1155" y="798" as="sourcePoint" />
+            <mxPoint x="690" y="918" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-14" edge="1" parent="1" source="niy5BmT-pGjxLw0RWRAJ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="niy5BmT-pGjxLw0RWRAJ-10" value="HTML string">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="585" y="1028" />
+              <mxPoint x="585" y="1028" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-15" edge="1" parent="1" source="niy5BmT-pGjxLw0RWRAJ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;strokeWidth=1.5;fontSize=11;" target="niy5BmT-pGjxLw0RWRAJ-11" value="static page">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="niy5BmT-pGjxLw0RWRAJ-16" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" value="Website architecture" vertex="1">
+          <mxGeometry height="30" width="420" x="40" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

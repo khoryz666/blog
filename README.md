@@ -111,6 +111,7 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 | `npm run check`   | Type-check with `astro check` |
 | `npm run lint`    | Lint with Oxlint             |
 | `npm run preview` | Preview production build     |
+| `npm run verify:sidebar` | Build + check sidebar layout/footer in mobile & desktop viewports (headless Chromium) |
 
 ## Credits
 

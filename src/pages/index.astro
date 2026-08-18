@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { site } from '../config'
+import { getPublishedPosts } from '../lib/posts'
+import type { Post } from '../lib/posts'
+import { formatDate } from '../lib/format'
+
+const posts = await getPublishedPosts()
+const byYear = new Map<number, Post[]>()
+for (const post of posts) {
+  const year = post.data.date.getFullYear()
+  const group = byYear.get(year) ?? []
+  group.push(post)
+  byYear.set(year, group)
+}
+const years = [...byYear.entries()]
+---
+
+<BaseLayout subtitle={site.taglines} description={site.taglines[0]}>
+  <input
+    class="search-input"
+    type="search"
+    id="post-search"
+    placeholder="Search posts..."
+    aria-label="Search posts"
+  />
+  <div id="post-list">
+    {years.map(([year, items]) => (
+      <section class="post-group">
+        <h2 class="post-year">{year}</h2>
+        <ul class="post-list">
+          {items.map((post) => (
+            <li>
+              <a class="post-link" href={`/post/${post.id}/`}>
+                <span class="post-title">{post.data.title}</span>
+                <time class="post-date">{formatDate(post.data.date)}</time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<script>
+  interface SearchEntry {
+    slug: string
+    title: string
+    date: string
+    year: number
+    description: string
+    tags: string[]
+    body: string
+  }
+
+  const list = document.getElementById('post-list')
+  const input = document.getElementById('post-search') as HTMLInputElement | null
+
+  const escapeHtml = (text: string): string => {
+    const map: Record<string, string> = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }
+    return text.replace(/[&<>"']/g, (char) => map[char])
+  }
+
+  const row = (post: SearchEntry): string => `
+  <li>
+    <a class="post-link" href="/post/${post.slug}/">
+      <span class="post-title">${escapeHtml(post.title)}</span>
+      <time class="post-date">${escapeHtml(post.date)}</time>
+    </a>
+  </li>`
+
+  function render(entries: SearchEntry[]) {
+    if (!list) return
+    if (entries.length === 0) {
+      list.innerHTML = '<p>No posts found.</p>'
+      return
+    }
+    const byYear = new Map<number, SearchEntry[]>()
+    for (const post of entries) {
+      const group = byYear.get(post.year) ?? []
+      group.push(post)
+      byYear.set(post.year, group)
+    }
+    list.innerHTML = [...byYear.entries()]
+      .map(
+        ([year, posts]) => `
+  <section class="post-group">
+    <h2 class="post-year">${year}</h2>
+    <ul class="post-list">${posts.map(row).join('')}</ul>
+  </section>`,
+      )
+      .join('')
+  }
+
+  let index: SearchEntry[] = []
+
+  fetch('/posts.json')
+    .then((response) => response.json() as Promise<SearchEntry[]>)
+    .then((data) => {
+      index = data
+      render(index)
+    })
+
+  input?.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase()
+    const hits = query
+      ? index.filter((post) =>
+          [post.title, post.description, post.tags.join(' '), post.body]
+            .join(' ')
+            .toLowerCase()
+            .includes(query),
+        )
+      : index
+    render(hits)
+  })
+</script>

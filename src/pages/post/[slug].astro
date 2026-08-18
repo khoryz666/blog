@@ -1,0 +1,44 @@
+---
+import { render } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PrevNext from '../../components/PrevNext.astro'
+import Icon from '../../components/Icon.astro'
+import { getPublishedPosts } from '../../lib/posts'
+import type { Post } from '../../lib/posts'
+import { excerpt } from '../../lib/markdown'
+import { formatDate } from '../../lib/format'
+
+interface Props {
+  post: Post
+  prev: Post | null
+  next: Post | null
+}
+
+export const getStaticPaths = (async () => {
+  const posts = await getPublishedPosts()
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      prev: index + 1 < posts.length ? posts[index + 1] : null,
+      next: index - 1 >= 0 ? posts[index - 1] : null,
+    } satisfies Props,
+  }))
+}) satisfies GetStaticPaths
+
+const { post, prev, next } = Astro.props
+const { Content } = await render(post)
+const description = post.data.description || excerpt(post.body ?? '')
+---
+
+<BaseLayout title={post.data.title} description={description}>
+  <div class="post-meta">
+    <div class="post-time">
+      <Icon name="calendar" class="fa-fw" />
+      <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+    </div>
+  </div>
+  <Content />
+  <PrevNext prev={prev} next={next} />
+</BaseLayout>

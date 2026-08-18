@@ -1,0 +1,169 @@
+#layout,
+#menu,
+.menu-link {
+  transition: all 0.2s ease-out;
+}
+
+.theme-knob {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--pre-bg);
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.15s ease;
+}
+
+.theme-knob:hover,
+.theme-knob:focus {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.theme-knob:active {
+  transform: scale(0.92);
+}
+
+.theme-knob svg {
+  margin: 0;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.theme-knob .icon-sun {
+  display: none;
+}
+
+html[data-theme='dark'] .theme-knob .icon-sun {
+  display: inline-block;
+}
+
+html[data-theme='dark'] .theme-knob .icon-moon {
+  display: none;
+}
+
+#layout {
+  position: relative;
+  left: 0;
+  padding-left: 0;
+}
+
+#layout.active #menu {
+  left: 0;
+}
+
+#layout.active .menu-link {
+  left: calc(var(--sidebar-width) + 12px);
+}
+
+html.menu-hidden #layout {
+  padding-left: 0;
+}
+
+html.menu-hidden #menu {
+  left: calc(0px - var(--sidebar-width));
+}
+
+html.menu-hidden .menu-link {
+  left: 12px;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 0 2em;
+  max-width: 800px;
+  margin-bottom: 50px;
+  line-height: 1.6em;
+  font-family: 'Nunito', sans-serif;
+}
+
+.header {
+  margin: 0;
+  color: var(--heading);
+  text-align: center;
+  padding: 2.5em 2em 0;
+  font-family: 'Cuprum', Helvetica, Arial, sans-serif;
+}
+
+.header h1 {
+  margin: 0.2em 0;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+.header h2 {
+  font-weight: 300;
+  color: var(--muted);
+  padding: 0;
+  margin-top: 0;
+}
+
+#tagline {
+  min-height: 1.3em;
+}
+
+#tagline::after {
+  content: '|';
+  margin-left: 0.1em;
+  color: var(--muted);
+  animation: tagline-blink 1s step-end infinite;
+}
+
+@keyframes tagline-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #tagline::after {
+    animation: none;
+  }
+}
+
+.content-subhead {
+  margin: 50px 0 20px 0;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+@media (min-width: 48em) {
+  .header,
+  .content {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  #layout {
+    padding-left: var(--sidebar-width);
+    left: 0;
+  }
+}
+
+@media (max-width: 48em) {
+  .header {
+    padding-top: 5em;
+  }
+
+  .header h1 {
+    font-size: 2.2em;
+  }
+
+  #layout.active {
+    position: relative;
+    left: var(--sidebar-width);
+  }
+}

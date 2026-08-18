@@ -1,0 +1,160 @@
+:root {
+  --bg: #faf6ec;
+  --text: #3f3a33;
+  --heading: #2f2a24;
+  --muted: #8d8578;
+  --muted-soft: #b3ab9d;
+  --link: #2f6f8f;
+  --link-visited: #4d5b8f;
+  --code-bg: rgba(60, 50, 30, 0.08);
+  --code-text: #4a4038;
+  --pre-bg: #f1ead9;
+  --border: #e8e0cd;
+  --blockquote-border: rgba(60, 50, 30, 0.25);
+  --sidebar-bg: #f1e9d8;
+  --menu-text: #6b6355;
+  --menu-hover: rgba(60, 50, 30, 0.07);
+  --menu-border: rgba(60, 50, 30, 0.12);
+  --accent: #b07d2b;
+}
+
+html[data-theme='dark'] {
+  --bg: #20242b;
+  --text: #cdd4dc;
+  --heading: #e6e9ed;
+  --muted: #98a2ab;
+  --muted-soft: #6e7780;
+  --link: #8fb8e8;
+  --link-visited: #b3a0d6;
+  --code-bg: rgba(255, 255, 255, 0.08);
+  --code-text: #d6dee6;
+  --pre-bg: #2b3038;
+  --border: #353b43;
+  --blockquote-border: rgba(255, 255, 255, 0.22);
+  --sidebar-bg: #191d23;
+  --menu-text: #9aa4ae;
+  --menu-hover: rgba(255, 255, 255, 0.06);
+  --menu-border: rgba(255, 255, 255, 0.08);
+  --accent: #d9a45b;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+svg {
+  display: inline-block;
+  margin-right: 0.2em;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+svg.fa-fw {
+  width: 1.2857em;
+  text-align: center;
+  margin-right: 0.2em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+code {
+  font-size: 85%;
+  color: var(--code-text);
+}
+
+p code,
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+li code {
+  display: inline;
+  padding: 0.2em 0.4em;
+  background: var(--code-bg);
+  border-radius: 3px;
+}
+
+pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: var(--pre-bg);
+  border-radius: 3px;
+}
+
+html:not([data-theme='dark']) .astro-code {
+  background-color: var(--pre-bg) !important;
+}
+
+html[data-theme='dark'] .astro-code,
+html[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+blockquote {
+  padding-left: 1em;
+  border-left: 0.2em solid var(--blockquote-border);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr {
+  border: solid;
+  border-width: 1px 0;
+}
+
+tr:first-child {
+  border-top: none;
+}
+
+th,
+td {
+  padding: 0.4em 0.6em;
+}

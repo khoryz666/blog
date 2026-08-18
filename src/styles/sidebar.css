@@ -194,6 +194,18 @@
   top: 5px;
 }
 
+@media (max-width: 48em) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  #menu {
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
 @media (min-width: 48em) {
   #menu {
     left: 0;

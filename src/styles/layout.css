@@ -102,6 +102,8 @@ html.menu-hidden .menu-link {
   margin: 0.2em 0;
   font-size: 3em;
   font-weight: 300;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .header h2 {

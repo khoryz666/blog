@@ -113,3 +113,15 @@
   color: var(--muted);
   font-size: 0.9em;
 }
+
+@media (max-width: 48em) {
+  .post-link {
+    align-items: flex-start;
+  }
+
+  .post-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}

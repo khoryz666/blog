@@ -70,6 +70,7 @@
 }
 
 #menu .brand {
+  flex-shrink: 0;
   font-family: Cuprum, Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 1.15em;
@@ -92,6 +93,7 @@
 }
 
 .menu-group {
+  flex-shrink: 0;
   padding: 0.6em 0;
   font-size: 0.92em;
   border-bottom: 1px solid var(--menu-border);
@@ -107,8 +109,13 @@
 }
 
 .menu-footer {
+  position: sticky;
+  bottom: 0;
+  flex-shrink: 0;
   margin-top: auto;
   padding: 0.4em 0.4em 0.6em;
+  background: var(--sidebar-bg);
+  border-top: 1px solid var(--menu-border);
 }
 
 .small-print {

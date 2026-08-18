@@ -70,7 +70,18 @@ npm run build    # outputs static files to dist/
 npm run preview  # check the production build locally
 ```
 
-`dist/` is plain HTML/CSS/JS/images. Push it from CI to any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages). New post? Add a folder → push to git → CI rebuilds → host serves it. Nothing else to do.
+`dist/` is plain HTML/CSS/JS/images — deployable to any static host.
+
+### Cloudflare Pages
+
+Connect this repo to a Cloudflare Pages project:
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+
+Astro is auto-detected as the framework. Every push to `main` rebuilds and deploys automatically — nothing else to configure. Optionally set `site` in `astro.config.mjs` to your Pages URL for canonical links.
+
+New post? Add a folder → push to git → Cloudflare rebuilds → it's live. Nothing else to do.
 
 ## Tech Stack
 
@@ -104,3 +115,7 @@ npm run preview  # check the production build locally
 ## Credits
 
 Ember is a modified version of [Blackburn](https://github.com/yoshiharuyamashita/blackburn), a theme by Yoshiharu Yamashita. Design inspired by [shawnliu.me](https://shawnliu.me).
+
+## License
+
+[MIT](./LICENSE)

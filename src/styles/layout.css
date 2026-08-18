@@ -134,12 +134,6 @@ html.menu-hidden .menu-link {
   }
 }
 
-.content-subhead {
-  margin: 50px 0 20px 0;
-  font-weight: 300;
-  color: var(--muted);
-}
-
 @media (min-width: 48em) {
   .header,
   .content {

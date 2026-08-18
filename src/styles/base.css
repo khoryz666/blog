@@ -3,7 +3,6 @@
   --text: #3f3a33;
   --heading: #2f2a24;
   --muted: #8d8578;
-  --muted-soft: #b3ab9d;
   --link: #2f6f8f;
   --link-visited: #4d5b8f;
   --code-bg: rgba(60, 50, 30, 0.08);
@@ -23,7 +22,6 @@ html[data-theme='dark'] {
   --text: #cdd4dc;
   --heading: #e6e9ed;
   --muted: #98a2ab;
-  --muted-soft: #6e7780;
   --link: #8fb8e8;
   --link-visited: #b3a0d6;
   --code-bg: rgba(255, 255, 255, 0.08);

@@ -6,10 +6,6 @@
   color: var(--muted);
 }
 
-article > footer {
-  text-align: right;
-}
-
 .prev-next-post {
   margin-top: 2em;
   padding-top: 2em;

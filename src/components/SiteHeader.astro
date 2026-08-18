@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string
+  subtitle?: string | string[]
+}
+
+const { title, subtitle } = Astro.props
+const taglines = subtitle ? (Array.isArray(subtitle) ? subtitle : [subtitle]) : []
+const animated = taglines.length > 1
+---
+
+<div class="header">
+  <h1>{title}</h1>
+  {animated ? (
+    <h2 id="tagline" data-taglines={JSON.stringify(taglines)}></h2>
+  ) : (
+    <h2>{taglines[0]}</h2>
+  )}
+</div>
+
+{animated && (
+  <script>
+    const element = document.getElementById('tagline')
+    if (element) {
+      const lines: string[] = JSON.parse(element.dataset.taglines ?? '[]')
+      let lineIndex = 0
+      let charIndex = 0
+      let deleting = false
+
+      function tick() {
+        const line = lines[lineIndex]
+        if (!line) return
+        if (!deleting) {
+          charIndex += 1
+          element.textContent = line.slice(0, charIndex)
+          if (charIndex >= line.length) {
+            deleting = true
+            setTimeout(tick, 2200)
+            return
+          }
+          setTimeout(tick, 90)
+        } else {
+          charIndex -= 1
+          element.textContent = line.slice(0, charIndex)
+          if (charIndex <= 0) {
+            deleting = false
+            lineIndex = (lineIndex + 1) % lines.length
+            setTimeout(tick, 300)
+            return
+          }
+          setTimeout(tick, 45)
+        }
+      }
+
+      tick()
+    }
+  </script>
+)}

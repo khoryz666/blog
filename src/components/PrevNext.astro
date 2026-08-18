@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Icon from './Icon.astro'
+
+type Post = CollectionEntry<'posts'>
+
+interface Props {
+  prev: Post | null
+  next: Post | null
+}
+
+const { prev, next } = Astro.props
+---
+
+<div class="prev-next-post">
+  <div class="cell chevron left">
+    {prev && (
+      <a href={`/post/${prev.id}/`} aria-label="Previous post">
+        <Icon name="chevron-left" />
+      </a>
+    )}
+  </div>
+  <div class="cell title">
+    <nav class="prev">
+      {prev && <a href={`/post/${prev.id}/`}>{prev.data.title}</a>}
+    </nav>
+  </div>
+  <div class="cell spacer" />
+  <div class="cell title">
+    <nav class="next">
+      {next && <a href={`/post/${next.id}/`}>{next.data.title}</a>}
+    </nav>
+  </div>
+  <div class="cell chevron right">
+    {next && (
+      <a href={`/post/${next.id}/`} aria-label="Next post">
+        <Icon name="chevron-right" />
+      </a>
+    )}
+  </div>
+</div>

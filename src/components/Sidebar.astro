@@ -1,0 +1,82 @@
+---
+import { site } from '../config'
+import Icon from './Icon.astro'
+
+interface Props {
+  pathname?: string
+}
+
+const { pathname = '' } = Astro.props
+const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+const activeItem = site.nav.find(
+  (item) => item.to === normalized || (item.to === '/' && normalized.startsWith('/post')),
+)
+---
+
+<div id="menu">
+  <a class="brand" href="/">
+    {site.brand}
+  </a>
+  <div class="menu-group">
+    <div class="menu-label">Menu</div>
+    <ul>
+      {site.nav.map((item) => {
+        const active = item === activeItem
+        return (
+          <li>
+            {item.to ? (
+              <a href={item.to} class:list={[{ active }]}>
+                <Icon name={item.icon} class="fa-fw" />
+                {item.label}
+              </a>
+            ) : (
+              <a href={item.href} target="_blank" rel="noopener noreferrer">
+                <Icon name={item.icon} class="fa-fw" />
+                {item.label}
+              </a>
+            )}
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+  <div class="menu-group">
+    <div class="menu-label">Social</div>
+    <ul>
+      {site.social.map((item) => {
+        const isMailto = item.href.startsWith('mailto:')
+        return (
+          <li>
+            <a href={item.href} target={isMailto ? undefined : '_blank'} rel={isMailto ? undefined : 'me'}>
+              <Icon name={item.icon} class="fa-fw" />
+              {item.label}
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+  <div class="menu-footer">
+    <div class="small-print">
+      <small>{site.copyright}</small>
+    </div>
+    <div class="small-print">
+      <small>Ember theme</small>
+    </div>
+    <div class="small-print">
+      <small>
+        Built with <a href="https://astro.build">Astro</a>
+      </small>
+    </div>
+    <div class="small-print">
+      <small>
+        Based on <a href="https://github.com/yoshiharuyamashita/blackburn">Blackburn</a>
+      </small>
+    </div>
+    <div class="small-print">
+      <small>
+        Inspired by <a href="https://shawnliu.me">shawnliu.me</a>
+      </small>
+    </div>
+  </div>
+</div>

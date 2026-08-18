@@ -1,0 +1,90 @@
+---
+import { site } from '../config'
+import SiteHeader from '../components/SiteHeader.astro'
+import Sidebar from '../components/Sidebar.astro'
+import Icon from '../components/Icon.astro'
+import '../styles/base.css'
+import '../styles/layout.css'
+import '../styles/sidebar.css'
+import '../styles/posts.css'
+
+interface Props {
+  title?: string
+  subtitle?: string | string[]
+  docTitle?: string
+  description?: string
+}
+
+const { title, subtitle, docTitle, description } = Astro.props
+const headerTitle = title ?? site.title
+const pageTitle = title ? `${docTitle ?? title} · ${site.title}` : (docTitle ?? site.title)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={title ?? site.title} />
+    <meta property="og:type" content={title ? 'article' : 'website'} />
+    {description && <meta property="og:description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cuprum&family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      ;(function () {
+        var theme = localStorage.getItem('theme')
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+        if (localStorage.getItem('sidebar') === 'hidden') {
+          document.documentElement.classList.add('menu-hidden')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <button id="theme-toggle" class="theme-knob" type="button" aria-label="Toggle dark mode">
+      <Icon name="moon" class="icon-moon" />
+      <Icon name="sun" class="icon-sun" />
+    </button>
+    <div id="layout">
+      <a href="#menu" id="menuLink" class="menu-link" aria-label="Toggle menu">
+        <span></span>
+      </a>
+      <Sidebar pathname={Astro.url.pathname} />
+      <div id="main">
+        {(title || subtitle) && <SiteHeader title={headerTitle} subtitle={subtitle} />}
+        <div class="content">
+          <slot />
+        </div>
+      </div>
+    </div>
+    <script>
+      const menuLink = document.getElementById('menuLink')
+      const layout = document.getElementById('layout')
+      menuLink?.addEventListener('click', (event) => {
+        event.preventDefault()
+        if (window.matchMedia('(max-width: 48em)').matches) {
+          layout?.classList.toggle('active')
+        } else {
+          const hidden = document.documentElement.classList.toggle('menu-hidden')
+          localStorage.setItem('sidebar', hidden ? 'hidden' : 'shown')
+        }
+      })
+
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const root = document.documentElement
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
+        root.dataset.theme = next
+        localStorage.setItem('theme', next)
+      })
+    </script>
+  </body>
+</html>

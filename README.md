@@ -20,6 +20,16 @@ npm install
 npm run dev
 ```
 
+### Toolchain (optional)
+
+Node version is pinned via [Nix flakes](https://nixos.wiki/wiki/Flakes) + [direnv](https://direnv.net/), so you don't have to manage it manually:
+
+```sh
+direnv allow   # once per clone; picks up flake.nix and puts node/npm on PATH
+```
+
+Without direnv, `nix develop` drops you into the same shell manually. Without Nix at all, just make sure you have Node `>=18.17.1` (see `engines` in `package.json`) and skip this step — everything else works the same.
+
 Then make it yours:
 
 1. **Settings** — edit `src/config.ts`: brand, title, taglines, nav links, social links. That's the only config file.
@@ -90,6 +100,7 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 - Zod — frontmatter validation (via `astro:content`)
 - TypeScript — checked with `astro check`
 - Oxlint — linting
+- Nix flakes + direnv — pinned toolchain (optional, see [Toolchain](#toolchain-optional))
 
 ## Structure
 
@@ -101,6 +112,7 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 - `src/layouts/` — `BaseLayout.astro` (shell, sidebar, head meta/OG)
 - `src/components/` — PrevNext, Sidebar, SiteHeader, Icon
 - `src/styles/` — theme CSS (colors are CSS variables in `base.css`; the `Ember` theme supports light/dark via `html[data-theme]`)
+- `flake.nix` / `.envrc` — pinned Node toolchain via Nix + direnv
 
 ## Commands
 

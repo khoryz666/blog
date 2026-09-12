@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .astro
+
+# Nix / direnv
+.direnv

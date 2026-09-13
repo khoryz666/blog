@@ -95,9 +95,9 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 
 ## Tech Stack
 
-- [Astro](https://astro.build) — static site build, content collections
-- [remark-gfm](https://github.com/remarkjs/remark-gfm) — GitHub-flavored markdown rendering
-- Zod — frontmatter validation (via `astro:content`)
+- [Astro](https://astro.build) — static site build, content collections, native GitHub-flavored markdown
+- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — sitemap generation
+- Zod — frontmatter validation (via `astro/zod`)
 - TypeScript — checked with `astro check`
 - Oxlint — linting
 - Nix flakes + direnv — pinned toolchain (optional, see [Toolchain](#toolchain-optional))

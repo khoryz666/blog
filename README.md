@@ -28,7 +28,7 @@ Node version is pinned via [Nix flakes](https://nixos.wiki/wiki/Flakes) + [diren
 direnv allow   # once per clone; picks up flake.nix and puts node/npm on PATH
 ```
 
-Without direnv, `nix develop` drops you into the same shell manually. Without Nix at all, just make sure you have Node `>=18.17.1` (see `engines` in `package.json`) and skip this step — everything else works the same.
+Without direnv, `nix develop` drops you into the same shell manually. Without Nix at all, just make sure you have Node `>=22.12.0` (see `engines` in `package.json`) and skip this step — everything else works the same.
 
 Then make it yours:
 

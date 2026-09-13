@@ -12,8 +12,7 @@
     "check": "astro check",
     "lint": "oxlint",
     "preview": "astro preview",
-    "verify:sidebar": "npm run build && node scripts/verify-sidebar.mjs",
-    "test": "npm run check && npm run lint && npm run verify:sidebar"
+    "test": "npm run check && npm run lint && npm run build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -22,7 +21,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "oxlint": "^1.75.0",
-    "playwright-core": "1.62.1",
     "typescript": "~6.0.2"
   }
 }

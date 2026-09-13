@@ -12,7 +12,8 @@
     "check": "astro check",
     "lint": "oxlint",
     "preview": "astro preview",
-    "verify:sidebar": "npm run build && node scripts/verify-sidebar.mjs"
+    "verify:sidebar": "npm run build && node scripts/verify-sidebar.mjs",
+    "test": "npm run check && npm run lint && npm run verify:sidebar"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config'
-import remarkGfm from 'remark-gfm'
 import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
@@ -7,7 +6,8 @@ export default defineConfig({
   site: 'https://hongyeblog.pages.dev',
   integrations: [sitemap()],
   markdown: {
-    remarkPlugins: [remarkGfm],
+    // GitHub-flavored Markdown is on by default (Astro's Sätteri processor), so
+    // no remark-gfm plugin is needed anymore.
     shikiConfig: {
       themes: {
         light: 'github-light',

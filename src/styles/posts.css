@@ -63,6 +63,10 @@
   flex-shrink: 0;
 }
 
+.pn-text {
+  min-width: 0;
+}
+
 .pn-label {
   display: block;
   font-size: 0.8em;
@@ -72,6 +76,8 @@
 .pn-title {
   display: block;
   color: var(--link);
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .search-input {
@@ -127,17 +133,14 @@
 
 .post-title {
   color: var(--link);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .post-description {
   color: var(--muted);
   font-size: 0.9em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: break-word;
 }
 
 .post-lead {
@@ -156,12 +159,5 @@
 @media (max-width: 48em) {
   .post-link {
     align-items: flex-start;
-  }
-
-  .post-title,
-  .post-description {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
   }
 }

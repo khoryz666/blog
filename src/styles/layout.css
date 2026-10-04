@@ -91,17 +91,28 @@ html.menu-hidden .menu-link {
   left: 12px;
 }
 
+/* Header and article share one measure, so a lengthy title wraps inside the
+   column it introduces instead of overhanging it. `--measure` is the text
+   width; the 4em covers the 2em inline padding on each side. */
+:root {
+  --measure: 800px;
+}
+
+.header,
 .content {
-  margin: 0 auto;
+  box-sizing: border-box;
+  max-width: calc(var(--measure) + 4em);
+  margin-inline: auto;
+}
+
+.content {
   padding: 0 2em;
-  max-width: 800px;
   margin-bottom: 50px;
   line-height: 1.6em;
   font-family: var(--font-body);
 }
 
 .header {
-  margin: 0;
   color: var(--heading);
   text-align: center;
   padding: 2.5em 2em 0;
@@ -112,8 +123,14 @@ html.menu-hidden .menu-link {
   margin: 0.2em 0;
   font-size: 3em;
   font-weight: 300;
-  overflow-wrap: anywhere;
-  hyphens: auto;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+/* Lengthy titles (posts run 45–60 characters) read better a size down once
+   they wrap inside the measure, instead of shouting across the page. */
+.header h1.h1-long {
+  font-size: 2.7em;
 }
 
 .header h2 {
@@ -166,6 +183,10 @@ html.menu-hidden .menu-link {
 
   .header h1 {
     font-size: 2.2em;
+  }
+
+  .header h1.h1-long {
+    font-size: 1.9em;
   }
 
   #layout.active {

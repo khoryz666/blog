@@ -7,10 +7,13 @@ interface Props {
 const { title, subtitle } = Astro.props
 const taglines = subtitle ? (Array.isArray(subtitle) ? subtitle : [subtitle]) : []
 const animated = taglines.length > 1
+// Post titles run 45–60 characters: at full size they wrap into a wall of
+// centred text, so they step down a size instead (see .header h1.h1-long).
+const longTitle = title.length > 40
 ---
 
 <div class="header">
-  <h1>{title}</h1>
+  <h1 class:list={[longTitle && 'h1-long']}>{title}</h1>
   {taglines.length > 0 && (
     <h2>
       {animated ? (

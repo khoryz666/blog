@@ -74,12 +74,18 @@ const ogType = date ? 'article' : 'website'
     </script>
   </head>
   <body>
-    <button id="theme-toggle" class="theme-knob" type="button" aria-label="Toggle dark mode">
+    <button
+      id="theme-toggle"
+      class="theme-knob"
+      type="button"
+      aria-label="Toggle dark mode"
+      aria-pressed="false"
+    >
       <Icon name="moon" class="icon-moon" />
       <Icon name="sun" class="icon-sun" />
     </button>
     <div id="layout">
-      <a href="#menu" id="menuLink" class="menu-link" aria-label="Toggle menu">
+      <a href="#menu" id="menuLink" class="menu-link" aria-label="Toggle menu" aria-controls="menu" aria-expanded="true">
         <span></span>
       </a>
       <Sidebar pathname={Astro.url.pathname} />
@@ -103,6 +109,18 @@ const ogType = date ? 'article' : 'website'
 
       const menuLink = document.getElementById('menuLink')
       const layout = document.getElementById('layout')
+
+      // The sidebar is a slide-over on narrow screens and collapsible on wide
+      // ones, so the reported state has to follow both.
+      const syncMenuToggle = () => {
+        const shown = window.matchMedia('(max-width: 48em)').matches
+          ? Boolean(layout?.classList.contains('active'))
+          : !document.documentElement.classList.contains('menu-hidden')
+        menuLink?.setAttribute('aria-expanded', String(shown))
+      }
+      syncMenuToggle()
+      window.addEventListener('resize', syncMenuToggle)
+
       menuLink?.addEventListener('click', (event) => {
         event.preventDefault()
         if (window.matchMedia('(max-width: 48em)').matches) {
@@ -111,14 +129,21 @@ const ogType = date ? 'article' : 'website'
           const hidden = document.documentElement.classList.toggle('menu-hidden')
           localStorage.setItem('sidebar', hidden ? 'hidden' : 'shown')
         }
+        syncMenuToggle()
       })
 
-      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      const knob = document.getElementById('theme-toggle')
+      const syncThemePressed = () =>
+        knob?.setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'dark'))
+      syncThemePressed()
+
+      knob?.addEventListener('click', () => {
         const root = document.documentElement
         const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
         root.dataset.theme = next
         localStorage.setItem('theme', next)
         syncThemeColor()
+        syncThemePressed()
       })
     </script>
   </body>

@@ -16,6 +16,7 @@ const rows = toListRows(await getPublishedPosts())
     aria-label="Search posts"
   />
   <div id="post-list" set:html={listHtml(rows)} />
+  <p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p>
 </BaseLayout>
 
 <script>
@@ -28,10 +29,13 @@ const rows = toListRows(await getPublishedPosts())
 
   const list = document.getElementById('post-list')
   const input = document.getElementById('post-search') as HTMLInputElement | null
+  const status = document.getElementById('search-status')
 
   const render = (entries: SearchEntry[]) => {
-    if (!list) return
-    list.innerHTML = entries.length === 0 ? '<p>No posts found.</p>' : listHtml(entries)
+    if (list) list.innerHTML = entries.length === 0 ? '<p>No posts found.</p>' : listHtml(entries)
+    if (status) {
+      status.textContent = entries.length === 0 ? 'No posts found.' : `${entries.length} posts found.`
+    }
   }
 
   // The SSR list stays on screen until the first keystroke: the search index

@@ -6,10 +6,15 @@ A warm, eye-friendly blog theme built with [Astro](https://astro.build). Static 
 
 - **One config file, one content directory** — site settings live in `src/config.ts`, all text lives in `content/`
 - **Markdown posts & pages** — one folder per post/page, images bundled automatically
-- **Live search** — client-side full-text search (title, description, tags, body), no server needed
+- **Live search** — client-side full-text search (title, description, tags, body); the index is fetched only on the first keystroke
 - **Eye-friendly light/dark mode** — warm paper light theme, soft graphite dark theme; follows your system by default, toggle with the knob in the top-right corner
 - **Post list** — title + one-line description per post, grouped by year
-- **SEO & social previews** — canonical URLs, Open Graph/Twitter cards, article published/modified dates
+- **Tags** — chips on each post and one archive page per tag at `/tags/<tag>/`
+- **Post metadata** — reading time, "Updated" date, older/newer navigation
+- **SEO & social previews** — canonical URLs, Open Graph/Twitter cards with a generated cover image, article dates, `lastmod` in the sitemap, robots.txt
+- **Syndication** — RSS feed at `/rss.xml`
+- **Fast & self-contained** — self-hosted variable fonts, no third-party requests
+- **Accessible** — reduced-motion support, live search announcements, labelled toggles
 - **Sidebar** — collapsible (hamburger), active-page highlight, rotating tagline
 
 ## Quick start
@@ -33,7 +38,7 @@ Without direnv, `nix develop` drops you into the same shell manually. Without Ni
 
 Then make it yours:
 
-1. **Settings** — edit `src/config.ts`: brand, title, taglines, nav links, social links. That's the only config file.
+1. **Settings** — edit `src/config.ts`: brand, title, site URL, language, taglines, nav links, social links. That's the only config file (`astro.config.mjs` and `robots.txt` read the URL from it).
 2. **Content** — everything you write lives in `content/`:
 
    ```
@@ -54,8 +59,11 @@ Then make it yours:
    title: My post
    description: One-line summary (optional; shown in the post list and as the post's lead + meta description)
    date: 2026-08-18
-   tags: [astro]
-   draft: false            # set true to hide it
+   lastmod: 2026-08-20    # optional: shown as "Updated ..." and in the sitemap
+   tags: [astro]          # optional: chips + an archive page per tag
+   image: /my-cover.png   # optional: per-post social preview (defaults to /og-cover.png)
+   lang: zh               # optional: <html lang> for this post (defaults to site.lang)
+   draft: false           # set true to hide it
    ---
 
    Body in markdown. Put images in the same folder:
@@ -91,14 +99,16 @@ Connect this repo to a Cloudflare Pages project:
 - Build command: `npm run build`
 - Build output directory: `dist`
 
-Astro is auto-detected as the framework. Every push to `main` rebuilds and deploys automatically — nothing else to configure. Optionally set `site` in `astro.config.mjs` to your Pages URL for canonical links.
+Astro is auto-detected as the framework. Every push to `main` rebuilds and deploys automatically — nothing else to configure. The site URL used for canonical links, the sitemap and robots.txt comes from `site.url` in `src/config.ts`, so update it there.
 
 New post? Add a folder → push to git → Cloudflare rebuilds → it's live. Nothing else to do.
 
 ## Tech Stack
 
 - [Astro](https://astro.build) — static site build, content collections, native GitHub-flavored markdown
-- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — sitemap generation
+- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — sitemap generation (with per-post `lastmod`)
+- [@astrojs/rss](https://docs.astro.build/en/guides/integrations-guide/rss/) — RSS feed
+- [@fontsource-variable](https://fontsource.org/) — self-hosted Cuprum/Nunito webfonts
 - Zod — frontmatter validation (via `astro/zod`)
 - TypeScript — checked with `astro check`
 - Oxlint — linting
@@ -110,22 +120,26 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 - `content/pages/` — one folder per static page (`index.md` + images)
 - `src/content.config.ts` — post and page collection schemas (Zod)
 - `src/config.ts` — site settings (the only configuration file)
-- `src/pages/` — `index.astro` (post list + search), `post/[slug].astro`, `[slug].astro` (renders `content/pages`), `posts.json.ts` (search index), `404.astro`
+- `src/pages/` — `index.astro` (post list + search), `post/[slug].astro`, `tags/[tag].astro`, `[slug].astro` (renders `content/pages`), `posts.json.ts` (search index), `rss.xml.ts`, `robots.txt.ts`, `404.astro`
 - `src/layouts/` — `BaseLayout.astro` (shell, sidebar, head meta/OG)
 - `src/components/` — PrevNext, Sidebar, SiteHeader, Icon
+- `src/lib/` — `posts.ts` (queries + descriptions), `list.ts` (shared list markup for SSR and search), `markdown.ts`, `format.ts`, `icons.ts`
 - `src/styles/` — theme CSS (colors are CSS variables in `base.css`; the `Ember` theme supports light/dark via `html[data-theme]`)
+- `public/` — favicon and default social cover, regenerated by `npm run assets`
+- `scripts/generate-assets.mjs` — rebuilds `public/og-cover.png` + `public/favicon.svg` from `src/config.ts` and the `base.css` palette
 - `flake.nix` / `.envrc` — pinned Node toolchain via Nix + direnv
 
 ## Commands
 
-| Command           | Description                  |
-| ----------------- | ---------------------------- |
-| `npm run dev`     | Start dev server             |
-| `npm run build`   | Build static site            |
-| `npm run check`   | Type-check with `astro check` |
-| `npm run lint`    | Lint with Oxlint             |
-| `npm run preview` | Preview production build     |
-| `npm test`        | Runs check, lint, and build — what CI runs |
+| Command            | Description                              |
+| ------------------ | ---------------------------------------- |
+| `npm run dev`      | Start dev server                         |
+| `npm run build`    | Build static site                        |
+| `npm run check`    | Type-check with `astro check`            |
+| `npm run lint`     | Lint with Oxlint                         |
+| `npm run preview`  | Preview production build                 |
+| `npm run assets`   | Regenerate the favicon and social cover  |
+| `npm test`         | Runs check, lint, and build — what CI runs |
 
 ## Credits
 

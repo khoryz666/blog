@@ -1,7 +1,17 @@
-#layout,
-#menu,
+/* Only the properties that actually move are animated: a blanket
+   `transition: all` would also transition colors and box-shadows. */
+#layout {
+  transition:
+    left 0.2s ease-out,
+    padding-left 0.2s ease-out;
+}
+
+#menu {
+  transition: left 0.2s ease-out;
+}
+
 .menu-link {
-  transition: all 0.2s ease-out;
+  transition: left 0.2s ease-out;
 }
 
 .theme-knob {

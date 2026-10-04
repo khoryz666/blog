@@ -12,8 +12,10 @@ import { formatDate } from '../../lib/format'
 
 interface Props {
   post: Post
-  prev: Post | null
-  next: Post | null
+  /** The post published before this one (left link). */
+  older: Post | null
+  /** The post published after this one (right link). */
+  newer: Post | null
 }
 
 export const getStaticPaths = (async () => {
@@ -22,13 +24,13 @@ export const getStaticPaths = (async () => {
     params: { slug: post.id },
     props: {
       post,
-      prev: index + 1 < posts.length ? posts[index + 1] : null,
-      next: index - 1 >= 0 ? posts[index - 1] : null,
+      older: index + 1 < posts.length ? posts[index + 1] : null,
+      newer: index - 1 >= 0 ? posts[index - 1] : null,
     } satisfies Props,
   }))
 }) satisfies GetStaticPaths
 
-const { post, prev, next } = Astro.props
+const { post, older, newer } = Astro.props
 const { Content } = await render(post)
 const description = postDescription(post)
 const updated =
@@ -68,5 +70,5 @@ const updated =
     )}
   </div>
   <Content />
-  <PrevNext prev={prev} next={next} />
+  <PrevNext older={older} newer={newer} />
 </BaseLayout>

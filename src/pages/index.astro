@@ -29,31 +29,37 @@ const rows = toListRows(await getPublishedPosts())
   const list = document.getElementById('post-list')
   const input = document.getElementById('post-search') as HTMLInputElement | null
 
-  function render(entries: SearchEntry[]) {
+  const render = (entries: SearchEntry[]) => {
     if (!list) return
-    list.innerHTML =
-      entries.length === 0 ? '<p>No posts found.</p>' : listHtml(entries)
+    list.innerHTML = entries.length === 0 ? '<p>No posts found.</p>' : listHtml(entries)
   }
 
-  let index: SearchEntry[] = []
+  // The SSR list stays on screen until the first keystroke: the search index
+  // is fetched only then, and reused afterwards.
+  let pending: Promise<SearchEntry[]> | null = null
+  const loadIndex = () =>
+    (pending ??= fetch('/posts.json').then((res) => res.json() as Promise<SearchEntry[]>))
 
-  fetch('/posts.json')
-    .then((response) => response.json() as Promise<SearchEntry[]>)
-    .then((data) => {
-      index = data
-      render(index)
-    })
+  const matches = (post: SearchEntry, query: string) =>
+    [post.title, post.description, post.tags.join(' '), post.body]
+      .join(' ')
+      .toLowerCase()
+      .includes(query)
 
+  const search = async () => {
+    const query = input?.value.trim().toLowerCase() ?? ''
+    if (!query) {
+      if (pending) render(await pending) // back to the full list
+      return
+    }
+    const index = await loadIndex()
+    if ((input?.value.trim().toLowerCase() ?? '') !== query) return // input moved on
+    render(index.filter((post) => matches(post, query)))
+  }
+
+  let debounce: ReturnType<typeof setTimeout> | undefined
   input?.addEventListener('input', () => {
-    const query = input.value.trim().toLowerCase()
-    const hits = query
-      ? index.filter((post) =>
-          [post.title, post.description, post.tags.join(' '), post.body]
-            .join(' ')
-            .toLowerCase()
-            .includes(query),
-        )
-      : index
-    render(hits)
+    clearTimeout(debounce)
+    debounce = setTimeout(search, 120)
   })
 </script>

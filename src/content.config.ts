@@ -11,6 +11,8 @@ const posts = defineCollection({
     lastmod: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    /** Path to a social-preview/hero image (defaults to the site cover). */
+    image: z.string().optional(),
   }),
 })
 

@@ -14,6 +14,8 @@ export interface SocialItem {
 export const site = {
   brand: 'hongye',
   title: "hongye's Blog",
+  url: 'https://hongyeblog.pages.dev',
+  lang: 'en',
   taglines: [
     '活着最大的乐趣, 就在于可以看到变数',
     'Read(); Think(); Try(); Repeat();',

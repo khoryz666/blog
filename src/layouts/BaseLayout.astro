@@ -15,12 +15,14 @@ interface Props {
   description?: string
   date?: Date
   lastmod?: Date
+  image?: string
 }
 
-const { title, subtitle, docTitle, description, date, lastmod } = Astro.props
+const { title, subtitle, docTitle, description, date, lastmod, image } = Astro.props
 const headerTitle = title ?? site.title
 const pageTitle = title ? `${docTitle ?? title} · ${site.title}` : (docTitle ?? site.title)
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
+const shareImage = new URL(image ?? '/og-cover.png', Astro.site ?? Astro.url.origin)
 const ogType = date ? 'article' : 'website'
 ---
 
@@ -44,9 +46,11 @@ const ogType = date ? 'article' : 'website'
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={site.title} />
     {description && <meta property="og:description" content={description} />}
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title ?? site.title} />
     {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={shareImage} />
+    <meta property="og:image" content={shareImage} />
     {date && <meta property="article:published_time" content={date.toISOString()} />}
     {lastmod && <meta property="article:modified_time" content={lastmod.toISOString()} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />

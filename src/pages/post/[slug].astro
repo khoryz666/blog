@@ -7,6 +7,7 @@ import Icon from '../../components/Icon.astro'
 import { getPublishedPosts, postDescription } from '../../lib/posts'
 import type { Post } from '../../lib/posts'
 import { slugifyTag } from '../../lib/list'
+import { readingTime } from '../../lib/markdown'
 import { formatDate } from '../../lib/format'
 
 interface Props {
@@ -30,6 +31,10 @@ export const getStaticPaths = (async () => {
 const { post, prev, next } = Astro.props
 const { Content } = await render(post)
 const description = postDescription(post)
+const updated =
+  post.data.lastmod && post.data.lastmod.getTime() !== post.data.date.getTime()
+    ? post.data.lastmod
+    : null
 ---
 
 <BaseLayout
@@ -46,6 +51,12 @@ const description = postDescription(post)
       <Icon name="calendar" class="fa-fw" />
       <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
     </div>
+    <div class="post-time">{readingTime(post.body ?? '')}</div>
+    {updated && (
+      <div class="post-time">
+        Updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+      </div>
+    )}
     {post.data.tags.length > 0 && (
       <ul class="post-tags">
         {post.data.tags.map((tag) => (

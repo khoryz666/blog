@@ -6,6 +6,7 @@ import PrevNext from '../../components/PrevNext.astro'
 import Icon from '../../components/Icon.astro'
 import { getPublishedPosts, postDescription } from '../../lib/posts'
 import type { Post } from '../../lib/posts'
+import { slugifyTag } from '../../lib/list'
 import { formatDate } from '../../lib/format'
 
 interface Props {
@@ -45,6 +46,15 @@ const description = postDescription(post)
       <Icon name="calendar" class="fa-fw" />
       <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
     </div>
+    {post.data.tags.length > 0 && (
+      <ul class="post-tags">
+        {post.data.tags.map((tag) => (
+          <li>
+            <a class="tag-chip" href={`/tags/${slugifyTag(tag)}/`}>#{tag}</a>
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
   <Content />
   <PrevNext prev={prev} next={next} />

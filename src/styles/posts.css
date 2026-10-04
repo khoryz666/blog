@@ -6,6 +6,32 @@
   color: var(--muted);
 }
 
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  list-style: none;
+  margin: 0.7em 0 0;
+  padding: 0;
+}
+
+.tag-chip {
+  display: inline-block;
+  padding: 0.15em 0.7em;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.tag-chip:hover,
+.tag-chip:focus {
+  color: var(--link);
+  border-color: var(--link);
+  text-decoration: none;
+}
+
 .prev-next-post {
   margin-top: 2em;
   padding-top: 2em;

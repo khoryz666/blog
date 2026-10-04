@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from 'astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { site } from '../../config'
+import { getPublishedPosts, toListRows, type Post } from '../../lib/posts'
+import { listHtml, slugifyTag } from '../../lib/list'
+
+interface Props {
+  tag: string
+  rows: ReturnType<typeof toListRows>
+}
+
+export const getStaticPaths = (async () => {
+  const posts = await getPublishedPosts()
+  const byTag = new Map<string, Post[]>()
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const group = byTag.get(tag) ?? []
+      group.push(post)
+      byTag.set(tag, group)
+    }
+  }
+  return [...byTag.entries()].map(([tag, items]) => ({
+    params: { tag: slugifyTag(tag) },
+    props: { tag, rows: toListRows(items) } satisfies Props,
+  }))
+}) satisfies GetStaticPaths
+
+const { tag, rows } = Astro.props
+const count = rows.length
+---
+
+<BaseLayout
+  title={`#${tag}`}
+  subtitle={count === 1 ? '1 tagged post' : `${count} tagged posts`}
+  description={`Posts tagged “${tag}” on ${site.title}`}
+>
+  <div set:html={listHtml(rows)} />
+</BaseLayout>

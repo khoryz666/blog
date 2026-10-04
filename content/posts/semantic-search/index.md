@@ -5,4 +5,5 @@ date: 2026-10-05
 draft: false
 ---
 What the dao dun, bibilabu
+
 now test my obsidian workflow

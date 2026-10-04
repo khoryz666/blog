@@ -5,9 +5,11 @@ date: 2026-04-04
 lastmod: 2026-06-13
 draft: false
 ---
-# How these thoughts came to me
+
+## How these thoughts came to me
 
 Recently, I am pretty busy. Reasons are listed as follows:
+
 1. I have multiple subjects taken in this semester and didn't really commit to understand the contents.
 2. I have tons of assignments, but not being motivated to even deal with any of them.
 3. I need to write a proposal for my FYP at next two semesters.
@@ -24,4 +26,3 @@ Let me re-create this feeling and retain it, before placing myself in a producti
 Hereby, I will limit myself to use AI to build subsequent open source projects (you can see the list in my resume), so that I achieve PBL by learning from AI instead of copying.
 
 Further progress will be updated in ongoing post.
-

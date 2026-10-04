@@ -4,9 +4,8 @@ import type { GetStaticPaths } from 'astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PrevNext from '../../components/PrevNext.astro'
 import Icon from '../../components/Icon.astro'
-import { getPublishedPosts } from '../../lib/posts'
+import { getPublishedPosts, postDescription } from '../../lib/posts'
 import type { Post } from '../../lib/posts'
-import { excerpt } from '../../lib/markdown'
 import { formatDate } from '../../lib/format'
 
 interface Props {
@@ -29,10 +28,16 @@ export const getStaticPaths = (async () => {
 
 const { post, prev, next } = Astro.props
 const { Content } = await render(post)
-const description = post.data.description || excerpt(post.body ?? '')
+const description = postDescription(post)
 ---
 
-<BaseLayout title={post.data.title} description={description}>
+<BaseLayout
+  title={post.data.title}
+  description={description}
+  date={post.data.date}
+  lastmod={post.data.lastmod}
+>
+  {post.data.description && <p class="post-lead">{post.data.description}</p>}
   <div class="post-meta">
     <div class="post-time">
       <Icon name="calendar" class="fa-fw" />

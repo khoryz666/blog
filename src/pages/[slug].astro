@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import type { GetStaticPaths } from 'astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { excerpt } from '../lib/markdown'
 
 interface Props {
   page: CollectionEntry<'pages'>
@@ -15,8 +16,9 @@ export const getStaticPaths = (async () => {
 
 const { page } = Astro.props
 const { Content } = await render(page)
+const description = page.data.description || excerpt(page.body ?? '')
 ---
 
-<BaseLayout title={page.data.title} docTitle={page.data.docTitle}>
+<BaseLayout title={page.data.title} docTitle={page.data.docTitle} description={description}>
   <Content />
 </BaseLayout>

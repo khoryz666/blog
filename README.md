@@ -8,7 +8,8 @@ A warm, eye-friendly blog theme built with [Astro](https://astro.build). Static 
 - **Markdown posts & pages** — one folder per post/page, images bundled automatically
 - **Live search** — client-side full-text search (title, description, tags, body), no server needed
 - **Eye-friendly light/dark mode** — warm paper light theme, soft graphite dark theme; follows your system by default, toggle with the knob in the top-right corner
-- **Post list** — one clean line per post, grouped by year
+- **Post list** — title + one-line description per post, grouped by year
+- **SEO & social previews** — canonical URLs, Open Graph/Twitter cards, article published/modified dates
 - **Sidebar** — collapsible (hamburger), active-page highlight, rotating tagline
 
 ## Quick start
@@ -51,7 +52,7 @@ Then make it yours:
    ```md
    ---
    title: My post
-   description: One-line summary (optional)
+   description: One-line summary (optional; shown in the post list and as the post's lead + meta description)
    date: 2026-08-18
    tags: [astro]
    draft: false            # set true to hide it
@@ -68,6 +69,7 @@ Then make it yours:
    ---
    title: My Page
    docTitle: Page         # optional: text used in <title>, defaults to title
+   description: Optional summary for meta tags (defaults to the first paragraph)
    ---
 
    Body in markdown.

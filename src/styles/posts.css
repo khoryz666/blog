@@ -101,11 +101,33 @@
   text-decoration: underline;
 }
 
+.post-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  min-width: 0;
+}
+
 .post-title {
   color: var(--link);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.post-description {
+  color: var(--muted);
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.post-lead {
+  margin: 0.4em 0 1.6em;
+  color: var(--muted);
+  font-size: 1.05em;
+  line-height: 1.5;
 }
 
 .post-date {
@@ -119,7 +141,8 @@
     align-items: flex-start;
   }
 
-  .post-title {
+  .post-title,
+  .post-description {
     white-space: normal;
     overflow: visible;
     text-overflow: clip;

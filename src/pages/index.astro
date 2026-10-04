@@ -1,17 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { site } from '../config'
-import { getPublishedPosts } from '../lib/posts'
-import type { Post } from '../lib/posts'
+import { getPublishedPosts, postDescription } from '../lib/posts'
 import { formatDate } from '../lib/format'
 
-const posts = await getPublishedPosts()
-const byYear = new Map<number, Post[]>()
-for (const post of posts) {
-  const year = post.data.date.getFullYear()
-  const group = byYear.get(year) ?? []
-  group.push(post)
-  byYear.set(year, group)
+interface PostRow {
+  slug: string
+  title: string
+  description: string
+  date: string
+  year: number
+}
+
+const rows: PostRow[] = (await getPublishedPosts()).map((post) => ({
+  slug: post.id,
+  title: post.data.title,
+  description: postDescription(post),
+  date: formatDate(post.data.date),
+  year: post.data.date.getFullYear(),
+}))
+
+const byYear = new Map<number, PostRow[]>()
+for (const row of rows) {
+  const group = byYear.get(row.year) ?? []
+  group.push(row)
+  byYear.set(row.year, group)
 }
 const years = [...byYear.entries()]
 ---
@@ -31,9 +44,12 @@ const years = [...byYear.entries()]
         <ul class="post-list">
           {items.map((post) => (
             <li>
-              <a class="post-link" href={`/post/${post.id}/`}>
-                <span class="post-title">{post.data.title}</span>
-                <time class="post-date">{formatDate(post.data.date)}</time>
+              <a class="post-link" href={`/post/${post.slug}/`}>
+                <span class="post-main">
+                  <span class="post-title">{post.title}</span>
+                  {post.description && <span class="post-description">{post.description}</span>}
+                </span>
+                <time class="post-date">{post.date}</time>
               </a>
             </li>
           ))}
@@ -71,7 +87,10 @@ const years = [...byYear.entries()]
   const row = (post: SearchEntry): string => `
   <li>
     <a class="post-link" href="/post/${post.slug}/">
-      <span class="post-title">${escapeHtml(post.title)}</span>
+      <span class="post-main">
+        <span class="post-title">${escapeHtml(post.title)}</span>
+        ${post.description ? `<span class="post-description">${escapeHtml(post.description)}</span>` : ''}
+      </span>
       <time class="post-date">${escapeHtml(post.date)}</time>
     </a>
   </li>`

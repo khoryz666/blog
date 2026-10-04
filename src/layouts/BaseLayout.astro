@@ -13,11 +13,15 @@ interface Props {
   subtitle?: string | string[]
   docTitle?: string
   description?: string
+  date?: Date
+  lastmod?: Date
 }
 
-const { title, subtitle, docTitle, description } = Astro.props
+const { title, subtitle, docTitle, description, date, lastmod } = Astro.props
 const headerTitle = title ?? site.title
 const pageTitle = title ? `${docTitle ?? title} · ${site.title}` : (docTitle ?? site.title)
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
+const ogType = date ? 'article' : 'website'
 ---
 
 <!doctype html>
@@ -26,10 +30,18 @@ const pageTitle = title ? `${docTitle ?? title} · ${site.title}` : (docTitle ??
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
+    <link rel="canonical" href={canonical} />
     {description && <meta name="description" content={description} />}
     <meta property="og:title" content={title ?? site.title} />
-    <meta property="og:type" content={title ? 'article' : 'website'} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.title} />
     {description && <meta property="og:description" content={description} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title ?? site.title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {date && <meta property="article:published_time" content={date.toISOString()} />}
+    {lastmod && <meta property="article:modified_time" content={lastmod.toISOString()} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

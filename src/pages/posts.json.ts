@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import { getPublishedPosts } from '../lib/posts'
+import { getPublishedPosts, postDescription } from '../lib/posts'
 import { plainText } from '../lib/markdown'
 import { formatDate } from '../lib/format'
 
@@ -10,7 +10,7 @@ export const GET: APIRoute = async () => {
     title: post.data.title,
     date: formatDate(post.data.date),
     year: post.data.date.getFullYear(),
-    description: post.data.description ?? '',
+    description: postDescription(post),
     tags: post.data.tags,
     body: plainText(post.body ?? ''),
   }))

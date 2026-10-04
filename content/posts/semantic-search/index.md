@@ -1,6 +1,6 @@
 ---
 title: "Start to research on my FYP product: Semantic Search Engine"
-description:
+description: daodun
 date: 2026-10-05
 draft: false
 ---

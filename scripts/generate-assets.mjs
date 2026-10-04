@@ -7,11 +7,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createRequire } from 'node:module'
+import sharp from 'sharp'
 import { site } from '../src/config.ts'
-
-const require = createRequire(import.meta.url)
-const sharp = require('sharp')
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 

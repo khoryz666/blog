@@ -13,6 +13,8 @@ const posts = defineCollection({
     draft: z.boolean().default(false),
     /** Path to a social-preview/hero image (defaults to the site cover). */
     image: z.string().optional(),
+    /** BCP 47 language tag; defaults to the site language in src/config.ts. */
+    lang: z.string().optional(),
   }),
 })
 
@@ -22,6 +24,8 @@ const pages = defineCollection({
     title: z.string(),
     docTitle: z.string().optional(),
     description: z.string().optional(),
+    /** BCP 47 language tag; defaults to the site language in src/config.ts. */
+    lang: z.string().optional(),
   }),
 })
 

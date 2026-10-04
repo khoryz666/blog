@@ -16,9 +16,11 @@ interface Props {
   date?: Date
   lastmod?: Date
   image?: string
+  lang?: string
+  noindex?: boolean
 }
 
-const { title, subtitle, docTitle, description, date, lastmod, image } = Astro.props
+const { title, subtitle, docTitle, description, date, lastmod, image, lang, noindex } = Astro.props
 const headerTitle = title ?? site.title
 const pageTitle = title ? `${docTitle ?? title} · ${site.title}` : (docTitle ?? site.title)
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
@@ -27,11 +29,13 @@ const ogType = date ? 'article' : 'website'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang ?? site.lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" />
     <title>{pageTitle}</title>
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link
@@ -90,6 +94,16 @@ const ogType = date ? 'article' : 'website'
       </div>
     </div>
     <script>
+      // Browser chrome color follows the theme's own --bg token, so the value
+      // is never duplicated here.
+      const syncThemeColor = () => {
+        const color = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
+        const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+        if (meta && color) meta.content = color
+      }
+      syncThemeColor()
+      window.addEventListener('load', syncThemeColor)
+
       const menuLink = document.getElementById('menuLink')
       const layout = document.getElementById('layout')
       menuLink?.addEventListener('click', (event) => {
@@ -107,6 +121,7 @@ const ogType = date ? 'article' : 'website'
         const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
         root.dataset.theme = next
         localStorage.setItem('theme', next)
+        syncThemeColor()
       })
     </script>
   </body>

@@ -43,7 +43,7 @@ Then make it yours:
 
    ```
    content/
-   ├── _templates/          ← starters to copy: post.md, post-tldr.md, post-tutorial.md, page.md
+   ├── _templates/          ← Obsidian Templates starters: post.md, post-tldr.md, post-tutorial.md, page.md
    ├── posts/               ← blog posts
    │   └── my-post/
    │       ├── index.md     ← frontmatter + markdown body
@@ -53,7 +53,7 @@ Then make it yours:
            └── index.md
    ```
 
-3. **Write a post** — copy a starter from `content/_templates/` (`post.md` for essays, `post-tldr.md` for quick notes, `post-tutorial.md` for guides) into `content/posts/<slug>/index.md`:
+3. **Write a post** — create `content/posts/<slug>/index.md`, open it and run *Insert template* from Obsidian's Templates plugin (its *Template folder location* points at `content/_templates/`). Pick `post.md` for essays, `post-tldr.md` for quick notes, `post-tutorial.md` for guides. The `{{date:YYYY-MM-DD}}` token is filled in by the plugin; type `title` yourself, since the file is `index.md` and `{{title}}` would insert "index":
 
    ```md
    ---

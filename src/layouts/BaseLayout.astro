@@ -31,6 +31,13 @@ const ogType = date ? 'article' : 'website'
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.title} — RSS`}
+      href="/rss.xml"
+    />
     {description && <meta name="description" content={description} />}
     <meta property="og:title" content={title ?? site.title} />
     <meta property="og:type" content={ogType} />

@@ -15,6 +15,9 @@
   --menu-hover: rgba(60, 50, 30, 0.07);
   --menu-border: rgba(60, 50, 30, 0.12);
   --accent: #b07d2b;
+  /* Self-hosted via @fontsource-variable (see BaseLayout.astro). */
+  --font-body: 'Nunito Variable', sans-serif;
+  --font-heading: 'Cuprum Variable', Helvetica, Arial, sans-serif;
 }
 
 html[data-theme='dark'] {

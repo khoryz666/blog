@@ -71,7 +71,7 @@
 
 #menu .brand {
   flex-shrink: 0;
-  font-family: Cuprum, Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.15em;
   letter-spacing: 0.12em;

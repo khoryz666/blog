@@ -11,7 +11,7 @@ export function slugifyTag(tag: string): string {
   return tag.trim().toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-')
 }
 
-const escapeHtml = (text: string): string =>
+export const escapeHtml = (text: string): string =>
   text.replace(/[&<>"']/g, (char) =>
     char === '&'
       ? '&amp;'

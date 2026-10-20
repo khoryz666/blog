@@ -107,12 +107,12 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 ## Tech Stack
 
 - [Astro](https://astro.build) — static site build, content collections, native GitHub-flavored markdown
-- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — sitemap generation (with per-post `lastmod`)
-- [@astrojs/rss](https://docs.astro.build/en/guides/integrations-guide/rss/) — RSS feed
+- Sitemap (with per-post `lastmod`) and RSS feed — small hand-written endpoints, no integrations
 - [@fontsource-variable](https://fontsource.org/) — self-hosted Cuprum/Nunito webfonts
 - Zod — frontmatter validation (via `astro/zod`)
 - TypeScript — checked with `astro check`
 - Oxlint — linting
+- [sharp](https://sharp.pixelplumbing.com/) — rasterizes the social cover in `npm run assets` (dev only)
 - Nix flakes + direnv — pinned toolchain (optional, see [Toolchain](#toolchain-optional))
 
 ## Structure
@@ -121,7 +121,7 @@ New post? Add a folder → push to git → Cloudflare rebuilds → it's live. No
 - `content/pages/` — one folder per static page (`index.md` + images)
 - `src/content.config.ts` — post and page collection schemas (Zod)
 - `src/config.ts` — site settings (the only configuration file)
-- `src/pages/` — `index.astro` (post list + search), `post/[slug].astro`, `tags/[tag].astro`, `[slug].astro` (renders `content/pages`), `posts.json.ts` (search index), `rss.xml.ts`, `robots.txt.ts`, `404.astro`
+- `src/pages/` — `index.astro` (post list + search), `post/[slug].astro`, `tags/[tag].astro`, `[slug].astro` (renders `content/pages`), `posts.json.ts` (search index), `rss.xml.ts`, `sitemap.xml.ts` (lists every route by hand — add new page routes there), `robots.txt.ts`, `404.astro`
 - `src/layouts/` — `BaseLayout.astro` (shell, sidebar, head meta/OG)
 - `src/components/` — PrevNext, Sidebar, SiteHeader, Icon
 - `src/lib/` — `posts.ts` (queries + descriptions), `list.ts` (shared list markup for SSR and search), `markdown.ts`, `format.ts`, `icons.ts`

@@ -72,6 +72,8 @@ Then make it yours:
    ![screenshot](./screenshot.png)
    ```
 
+   In Obsidian, just paste an image: it is saved next to `index.md` and linked as standard markdown, spaces in the file name included — no renaming needed.
+
 4. **Write a page** — create `content/pages/<name>/index.md`; it's served at `/<name>/` with no other setup:
 
    ```md
@@ -83,6 +85,17 @@ Then make it yours:
 
    Body in markdown.
    ```
+
+### Writing in Obsidian
+
+Open this repo folder itself as a vault (*Open folder as vault* → the repo root), not a parent folder: Obsidian only reads `.obsidian/` at the vault root, and the git plugin works on the vault root. The committed `.obsidian/` settings then give you:
+
+- standard markdown links (`![](./image.png)`, not `![[wikilinks]]`, which the site can't render) and pasted images saved next to the note
+- *Insert template* reading `content/_templates/`
+- `node_modules/`, `dist/` and `public/` hidden from search, graph and the quick switcher
+- [Git](https://github.com/Vinzent03/obsidian-git) plugin settings — install the plugin from *Community plugins* once per device (its code isn't committed)
+
+Publishing is manual: write with `draft: true`, flip it to `false` when ready, then run **Git: Commit-and-sync** (bind a hotkey under *Settings → Hotkeys*). It pulls with rebase (so Dependabot merges never conflict), commits as `content: update from Obsidian (<date>)` and pushes, which triggers the Cloudflare deploy. The vault also pulls on startup. Commit-and-sync stages *every* change in the repo, so commit code edits from the terminal before syncing from Obsidian.
 
 ## Deploy
 

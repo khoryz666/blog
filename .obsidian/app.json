@@ -1,0 +1,10 @@
+{
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "./",
+  "userIgnoreFilters": [
+    "node_modules/",
+    "dist/",
+    "public/"
+  ]
+}

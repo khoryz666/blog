@@ -1,0 +1,7 @@
+{
+  "commitMessage": "content: update from Obsidian ({{date}})",
+  "commitDateFormat": "YYYY-MM-DD HH:mm",
+  "listChangedFilesInMessageBody": true,
+  "autoPullOnBoot": true,
+  "syncMethod": "rebase"
+}

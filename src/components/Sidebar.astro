@@ -7,9 +7,10 @@ interface Props {
 }
 
 const { pathname = '' } = Astro.props
-const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+// Nav paths end in a slash, like the built pages (/about/).
+const normalized = pathname.endsWith('/') ? pathname : `${pathname}/`
 const activeItem = site.nav.find(
-  (item) => item.to === normalized || (item.to === '/' && normalized.startsWith('/post')),
+  (item) => item.to === normalized || (item.to === '/' && normalized.startsWith('/post/')),
 )
 ---
 

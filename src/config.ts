@@ -23,9 +23,9 @@ export const site = {
   copyright: '© 2026. All rights reserved.',
   nav: [
     { label: 'Home', to: '/', icon: 'home' },
-    { label: 'Resources', to: '/resources', icon: 'archive' },
-    { label: 'Friends', to: '/friends', icon: 'users' },
-    { label: 'About', to: '/about', icon: 'user' },
+    { label: 'Resources', to: '/resources/', icon: 'archive' },
+    { label: 'Friends', to: '/friends/', icon: 'users' },
+    { label: 'About', to: '/about/', icon: 'user' },
     { label: 'Resume', href: 'https://docs.google.com/document/d/1g6rFkIBUW2a7zAXWrMma7KrQGBwZQ0GU0n_S09rm7I0/edit?tab=t.0', icon: 'file' },
   ] as NavItem[],
   social: [

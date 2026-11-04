@@ -1,10 +1,6 @@
 ---
-title: "Start to research on my FYP product: Semantic Search Engine"
-summary: daodun
-date: 2026-10-05
-draft: false
+title: logs of learning semantic search from scratch
+summary:
+date: 2026-11-04
+draft: true
 ---
-
-What the dao dun, bibilabu
-
-now test my obsidian workflow

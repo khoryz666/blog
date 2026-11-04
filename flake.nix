@@ -66,6 +66,10 @@
           packages = [ pkgs.hugo ];
           HUGO_THEMESDIR = themesDir pkgs;
         };
+        # `nix develop .#deploy` adds wrangler for Cloudflare Pages.
+        deploy = pkgs.mkShell {
+          packages = [ pkgs.wrangler ];
+        };
       });
     };
 }

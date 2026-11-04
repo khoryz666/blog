@@ -12,5 +12,13 @@ jobs:
       - uses: actions/checkout@v7
       - uses: cachix/install-nix-action@v31
       # Fails on any Hugo warning, so a theme or Hugo update that needs a
-      # config change never reaches main.
+      # config change never reaches the live site.
       - run: nix build -L
+      # Runs only once the CLOUDFLARE_PROJECT variable is set (see README → Deploy).
+      - name: Deploy to Cloudflare Pages
+        if: vars.CLOUDFLARE_PROJECT != '' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: nix develop .#deploy -c wrangler pages deploy result/ --project-name "${{ vars.CLOUDFLARE_PROJECT }}" --branch main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: 'false'

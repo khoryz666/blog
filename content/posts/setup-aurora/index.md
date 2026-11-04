@@ -1,5 +1,5 @@
 ---
-title: "setup guide: Aurora OS without enabling -dx mode"
+title: "setup: Aurora OS without dx mode"
 summary: an installation guide of an atomic distro
 date: 2026-06-13
 lastmod: 2026-11-04

@@ -65,6 +65,10 @@ enableRobotsTXT = true
 # The top menu. pageRef points at a page in content/; url at any link.
 [menus]
   [[menus.main]]
+    name = "Archive"
+    pageRef = "/archives"
+    weight = 5
+  [[menus.main]]
     name = "Search"
     pageRef = "/search"
     weight = 10

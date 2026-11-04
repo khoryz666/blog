@@ -25,8 +25,7 @@ What this guide covers and why you would follow it.
    ```
 
 3. Third step with a screenshot. Put images next to `index.md` in this post's
-   folder and reference them as `![short description](./your-screenshot.png)`
-   — the file has to exist, or the build fails.
+   folder and reference them as `![short description](./your-screenshot.png)`.
 
 4. Fourth step as a short list:
 

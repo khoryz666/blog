@@ -58,7 +58,7 @@ Create `content/posts/<slug>/index.md`, copy a file from `templates/` into it, f
 ```md
 ---
 title: My post
-description: One-line summary, shown under the title and as the meta description
+summary: One-line summary, shown in the post list and as the meta description
 date: 2026-08-18
 lastmod: 2026-08-20      # optional: when you last changed it a lot
 tags: [linux]            # optional: an archive page per tag at /tags/<tag>/

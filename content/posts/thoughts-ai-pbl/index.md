@@ -1,6 +1,6 @@
 ---
 title: Thoughts on AI and Project Based Learning (PBL)
-description: tldr; wants to learn by doing projects and reduce use of AI to code
+summary: tldr; wants to learn by doing projects and reduce use of AI to code
 date: 2026-04-04
 lastmod: 2026-06-13
 draft: false

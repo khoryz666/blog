@@ -1,6 +1,6 @@
 ---
 title: Quick note title
-description: tldr; a single sentence that says the whole point
+summary: tldr; a single sentence that says the whole point
 date: "{{date:YYYY-MM-DD}}"
 draft: true
 ---

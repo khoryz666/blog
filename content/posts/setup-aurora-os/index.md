@@ -1,6 +1,6 @@
 ---
 title: How to setup Aurora OS for devs without enabling -dx mode
-description: tldr; a bunch of installation guide on an atomic distro (though it is not actually a distro)
+summary: tldr; a bunch of installation guide on an atomic distro (though it is not actually a distro)
 date: 2026-06-13
 lastmod: 2026-06-13
 draft: false

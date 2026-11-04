@@ -1,6 +1,6 @@
 ---
 title: My post title
-description: tldr; one-line summary — shown under the title and as the meta description
+summary: tldr; one-line summary — shown in the post list and as the meta description
 date: "{{date:YYYY-MM-DD}}"
 tags: []
 draft: true

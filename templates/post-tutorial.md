@@ -1,6 +1,6 @@
 ---
 title: How to do something step by step
-description: tldr; a short guide on doing the thing (on the platform it runs on)
+summary: tldr; a short guide on doing the thing (on the platform it runs on)
 date: "{{date:YYYY-MM-DD}}"
 tags: []
 ShowToc: true                      # table of contents above the post

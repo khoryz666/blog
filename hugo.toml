@@ -1,0 +1,86 @@
+baseURL = "https://hongyeblog.pages.dev/" # the live URL, with a trailing slash
+locale = "en"
+title = "hongye's Blog"
+copyright = "© 2026. All rights reserved."
+theme = "PaperMod"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+# Posts live at /post/<folder>/ and the feed at /rss.xml.
+[permalinks]
+  posts = "/post/:contentbasename/"
+
+[outputFormats.RSS]
+  baseName = "rss"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"] # JSON is the search index
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[taxonomies]
+  tag = "tags"
+
+[markup.highlight]
+  noClasses = false # PaperMod ships its own light/dark code colors
+
+[params]
+  description = "活着最大的乐趣, 就在于可以看到变数" # default meta description
+  mainSections = ["posts"]
+  defaultTheme = "auto"
+  images = ["og-cover.png"]
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowFullTextinRSS = true
+
+  [params.assets]
+    # The PNG favicons in static/ use the theme's default file names.
+    favicon = "favicon.svg"
+    safari_pinned_tab = "favicon.svg"
+
+  # The intro at the top of the home page (Markdown).
+  [params.homeInfoParams]
+    Title = "hongye's Blog"
+    Content = """
+活着最大的乐趣, 就在于可以看到变数
+
+`Read(); Think(); Try(); Repeat();`
+"""
+
+  # Icons under the intro. Names are listed in PaperMod's layouts/_partials/svg.html.
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:khoryz666@gmail.com"
+  [[params.socialIcons]]
+    name = "discord"
+    url = "https://discordapp.com/users/759381914548568094"
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/khoryz666"
+
+# The top menu. pageRef points at a page in content/; url at any link.
+[menus]
+  [[menus.main]]
+    name = "Search"
+    pageRef = "/search"
+    weight = 10
+  [[menus.main]]
+    name = "Resources"
+    pageRef = "/resources"
+    weight = 20
+  [[menus.main]]
+    name = "Friends"
+    pageRef = "/friends"
+    weight = 30
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 40
+  [[menus.main]]
+    name = "Resume"
+    url = "https://docs.google.com/document/d/1g6rFkIBUW2a7zAXWrMma7KrQGBwZQ0GU0n_S09rm7I0/edit?tab=t.0"
+    weight = 50

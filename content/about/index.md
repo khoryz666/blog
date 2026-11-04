@@ -1,6 +1,5 @@
 ---
 title: About Me
-docTitle: About
 ---
 
 Welcome to my world. I am excited to share what I learn (but in a rough manner), hopefully it gives you some help or inspiration.

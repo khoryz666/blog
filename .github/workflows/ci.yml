@@ -6,15 +6,11 @@ on:
   pull_request:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          # Same file Cloudflare Pages reads, so CI fails (and blocks the
-          # Dependabot auto-merge) whenever a bump needs a newer Node.
-          node-version-file: .node-version
-          cache: npm
-      - run: npm ci
-      - run: npm test
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      # Fails on any Hugo warning, so a theme or Hugo update that needs a
+      # config change never reaches main.
+      - run: nix build -L

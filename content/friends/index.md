@@ -1,6 +1,5 @@
 ---
 title: Friends
-docTitle: Friends
 ---
 
 Blogs I read:

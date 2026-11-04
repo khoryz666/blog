@@ -8,6 +8,6 @@ I am particularly interested in containerization and systems programming (Rust).
 
 Don't hesitate to ping me through email, discord and github.
 
-For employers whom interested, the link to my resume is also listed at the left.
+For employers whom interested, the link to my resume is also in the menu at the top.
 
 ***All text in this blog is human written.***

@@ -71,10 +71,6 @@ enableRobotsTXT = true
     pageRef = "/search"
     weight = 10
   [[menus.main]]
-    name = "Resources"
-    pageRef = "/resources"
-    weight = 20
-  [[menus.main]]
     name = "Friends"
     pageRef = "/friends"
     weight = 30

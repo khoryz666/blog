@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # Hugo and the theme are updated by .github/workflows/update.yml.
   - package-ecosystem: github-actions
     directory: /
     schedule:

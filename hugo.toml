@@ -47,8 +47,6 @@ enableRobotsTXT = true
     Title = "hongye's Blog"
     Content = """
 活着最大的乐趣, 就在于可以看到变数
-
-`Read(); Think(); Try(); Repeat();`
 """
 
   # Icons under the intro. Names are listed in PaperMod's layouts/_partials/svg.html.

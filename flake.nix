@@ -8,9 +8,22 @@
       url = "github:adityatelange/hugo-PaperMod";
       flake = false;
     };
+    # The Obsidian Git plugin's release files, committed under .obsidian/ by `nix run .#obsidian-plugins`.
+    obsidian-git-main = {
+      url = "file+https://github.com/Vinzent03/obsidian-git/releases/latest/download/main.js";
+      flake = false;
+    };
+    obsidian-git-manifest = {
+      url = "file+https://github.com/Vinzent03/obsidian-git/releases/latest/download/manifest.json";
+      flake = false;
+    };
+    obsidian-git-styles = {
+      url = "file+https://github.com/Vinzent03/obsidian-git/releases/latest/download/styles.css";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, papermod }:
+  outputs = { self, nixpkgs, papermod, ... }@inputs:
     let
       forAllSystems = f:
         nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ]
@@ -33,6 +46,17 @@
               --destination "$out"
           '';
           dontInstall = true;
+        };
+
+        obsidian-plugins = pkgs.writeShellApplication {
+          name = "obsidian-plugins";
+          text = ''
+            dir=.obsidian/plugins/obsidian-git
+            mkdir -p "$dir"
+            install -m 644 ${inputs.obsidian-git-main} "$dir/main.js"
+            install -m 644 ${inputs.obsidian-git-manifest} "$dir/manifest.json"
+            install -m 644 ${inputs.obsidian-git-styles} "$dir/styles.css"
+          '';
         };
       });
 

@@ -13,15 +13,11 @@
 # Nix / direnv
 .direnv
 
-# Obsidian: keep the vault settings the blog relies on (links, attachments,
-# templates, git), not per-device state or plugin code.
+# Obsidian: keep the vault settings and the Git plugin the blog relies on,
+# not per-device state.
 .obsidian/*
 !.obsidian/app.json
 !.obsidian/core-plugins.json
 !.obsidian/templates.json
 !.obsidian/community-plugins.json
 !.obsidian/plugins/
-.obsidian/plugins/*
-!.obsidian/plugins/obsidian-git/
-.obsidian/plugins/obsidian-git/*
-!.obsidian/plugins/obsidian-git/data.json

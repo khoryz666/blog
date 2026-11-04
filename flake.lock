@@ -16,6 +16,42 @@
         "type": "github"
       }
     },
+    "obsidian-git-main": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-v5x0rPkv2hOumDW2VHmpSZyy9Y+YjNMv1mF5yaGOUOg=",
+        "type": "file",
+        "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/main.js"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/main.js"
+      }
+    },
+    "obsidian-git-manifest": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-EWTuR6nLsS1hQ6sRyXvQmHEq20kR2EpzV07NDnb0ogM=",
+        "type": "file",
+        "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/manifest.json"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/manifest.json"
+      }
+    },
+    "obsidian-git-styles": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-MBjfXp2peom3IL61koRbs5hCoBpUbAUtowDOzTC05V0=",
+        "type": "file",
+        "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/styles.css"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/styles.css"
+      }
+    },
     "papermod": {
       "flake": false,
       "locked": {
@@ -35,6 +71,9 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "obsidian-git-main": "obsidian-git-main",
+        "obsidian-git-manifest": "obsidian-git-manifest",
+        "obsidian-git-styles": "obsidian-git-styles",
         "papermod": "papermod"
       }
     }

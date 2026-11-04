@@ -1,8 +1,8 @@
 ---
-title: How to setup Aurora OS for devs without enabling -dx mode
-summary: tldr; a bunch of installation guide on an atomic distro (though it is not actually a distro)
+title: "setup guide: Aurora OS without enabling -dx mode"
+summary: an installation guide of an atomic distro
 date: 2026-06-13
-lastmod: 2026-06-13
+lastmod: 2026-11-04
 draft: false
 ---
 
@@ -38,8 +38,8 @@ Aurora OS is built on top of Universal Blue Project, which utilizes Fedora Kinoi
 
    The special part is virtual machine manager, I installed it through command line because I need to include some extensions. `flatpak install org.virt_manager.virt-manager org.virt_manager.virt_manager.Extension.Qemu`
 
-   ![Pasted image 20260613172240.png](./Pasted-image-20260613172240.png)
-   ![Pasted image 20260613172310.png](./Pasted-image-20260613172310.png)
+   ![Pasted image 20260613172240.png](Pasted-image-20260613172240.png)
+   ![Pasted image 20260613172310.png](Pasted-image-20260613172310.png)
 
    Note that you need to choose `QEMU/KVM user session` for virtual machine to work. The rest steps to add a VM can be done by going through the GUI, so I won't blog that here. I don't know how to setup RDP by using this method. If you happen to need more functionality other than this, consider rpm-ostree layering instead.
 

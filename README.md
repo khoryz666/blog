@@ -117,12 +117,12 @@ In a fork, enable workflows once under the *Actions* tab. GitHub keeps them disa
 
 ## Commands
 
-| Command | Description |
-| --- | --- |
-| `hugo server -D` | Preview with drafts at http://localhost:1313 |
-| `nix build` | Build the site into `./result` (sees only files tracked by git, so `git add` new files first) |
-| `nix flake update` | Update Hugo, PaperMod and the Obsidian Git plugin |
-| `nix run .#obsidian-plugins` | Copy the pinned Obsidian Git plugin into `.obsidian/` |
+| Command                      | Description                                                                                   |
+| ---------------------------- | --------------------------------------------------------------------------------------------- |
+| `hugo server -D`             | Preview with drafts at http://localhost:1313                                                  |
+| `nix build`                  | Build the site into `./result` (sees only files tracked by git, so `git add` new files first) |
+| `nix flake update`           | Update Hugo, PaperMod and the Obsidian Git plugin                                             |
+| `nix run .#obsidian-plugins` | Copy the pinned Obsidian Git plugin into `.obsidian/`                                         |
 
 ## Structure
 

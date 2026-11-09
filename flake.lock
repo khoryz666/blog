@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1793706278,
-        "narHash": "sha256-CE1GD35mj//AKYuLNbQJZDelQYWzef5GBpQno9uyNP0=",
+        "lastModified": 1793977579,
+        "narHash": "sha256-WrSODdZFVIs/Hh2NzC0bY+ROByi0bATg8WfePX8dPj8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ea9e3ef341e11c193537f674f821a99f9f436729",
+        "rev": "4fe25e12eb9f4c744966dd3de5a05246cf098601",
         "type": "github"
       },
       "original": {
@@ -19,7 +19,7 @@
     "obsidian-git-main": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-v5x0rPkv2hOumDW2VHmpSZyy9Y+YjNMv1mF5yaGOUOg=",
+        "narHash": "sha256-RS7m25Kp0T7tAarJaHWeSH4jz1Liq9y3rfsDGSzItlg=",
         "type": "file",
         "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/main.js"
       },
@@ -31,7 +31,7 @@
     "obsidian-git-manifest": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-EWTuR6nLsS1hQ6sRyXvQmHEq20kR2EpzV07NDnb0ogM=",
+        "narHash": "sha256-jEF/UGLepgd4YZHiEG8IUOOrWPR+QgfKQt/pDzAH9MQ=",
         "type": "file",
         "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/manifest.json"
       },
@@ -43,7 +43,7 @@
     "obsidian-git-styles": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-MBjfXp2peom3IL61koRbs5hCoBpUbAUtowDOzTC05V0=",
+        "narHash": "sha256-Kn3OP/K5AZVw/Ipg51P3JWkNbcfNUmTJsmDaKyO6d1U=",
         "type": "file",
         "url": "https://github.com/Vinzent03/obsidian-git/releases/latest/download/styles.css"
       },

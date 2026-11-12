@@ -76,6 +76,22 @@ A page (`content/<name>/index.md`, served at `/<name>/`) needs only `title`. Add
 
 To keep posts portable to any other blog engine, use standard Markdown only: no Hugo shortcodes and no `![[wikilinks]]`.
 
+### Math
+
+Equations use the same LaTeX syntax as Obsidian: `$...$` inline and `$$...$$` on their own lines for display math:
+
+```md
+Inline math: $O(n^2)$
+
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+```
+
+Math is rendered during the build by Hugo's embedded KaTeX, so there is no front matter flag and no client-side JavaScript. The passthrough delimiters live in `hugo.toml`, and `layouts/_markup/render-passthrough.html` turns each equation into MathML. Code blocks and inline code are skipped automatically.
+
+Keep inline delimiters tight (`$x$`, not `$ x $`). That rule is what lets ordinary prices such as `$5 and $10` stay text instead of becoming an equation. For a price range like `$5-$10`, write `&#36;5-&#36;10` or `USD 5–10`.
+
 ## Deploy on Cloudflare Pages
 
 CI builds the site with Nix and uploads it with wrangler. Cloudflare doesn't build anything itself.

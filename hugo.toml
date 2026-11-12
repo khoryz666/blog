@@ -27,6 +27,14 @@ enableRobotsTXT = true
 [markup.highlight]
   noClasses = false # PaperMod ships its own light/dark code colors
 
+# Math: same delimiters as Obsidian. Hugo renders KaTeX to MathML at build time
+# via layouts/_markup/render-passthrough.html (no client-side JavaScript).
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [['$$', '$$']]
+    inline = [['$', '$']]
+
 [params]
   description = "活着最大的乐趣, 就在于可以看到变数" # default meta description
   mainSections = ["posts"]

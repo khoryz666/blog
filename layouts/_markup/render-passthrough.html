@@ -1,0 +1,21 @@
+{{- /*
+  Render math during the build with Hugo's embedded KaTeX.
+
+  Uses Obsidian's delimiters ($...$ inline, $$...$$ block). The whitespace
+  guard keeps something like "$5 and $10" from becoming an equation.
+*/ -}}
+{{- $inner := .Inner -}}
+{{- $type := .Type -}}
+{{- $position := .Position -}}
+{{- if and (eq $type "inline") (ne $inner (trim $inner " \t\n")) -}}
+  {{- printf "$%s$" $inner -}}
+{{- else -}}
+  {{- $opts := dict "output" "mathml" "displayMode" (eq $type "block") -}}
+  {{- with try (transform.ToMath $inner $opts) -}}
+    {{- with .Err }}
+      {{- errorf "Unable to render math: %s: see %s" . $position }}
+    {{- else }}
+      {{- if eq $type "block" }}<div class="math-display">{{ .Value }}</div>{{ else }}{{ .Value }}{{ end }}
+    {{- end }}
+  {{- end -}}
+{{- end -}}

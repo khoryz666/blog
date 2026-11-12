@@ -1,0 +1,6 @@
+/* Display math is a block element; keep wide equations inside the column. */
+.math-display {
+  margin-block: 1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
